@@ -32,9 +32,7 @@ public class Player : MonoBehaviour
         Idle,
         Walk,
         Run,
-        RunBack,
         Attack,
-        ChangeWeapon,
         Dead,
         Win
     }
@@ -101,10 +99,6 @@ public class Player : MonoBehaviour
                     ChangePlayerState(PlayerState.Walk);
                 }
                 break;
-            case PlayerState.RunBack:
-                break;
-            case PlayerState.ChangeWeapon:
-                break;
             case PlayerState.Dead:
                 break;
             case PlayerState.Win:
@@ -166,10 +160,6 @@ public class Player : MonoBehaviour
                 break;
             case PlayerState.Run:
                 break;
-            case PlayerState.RunBack:
-                break;
-            case PlayerState.ChangeWeapon:
-                break;
             case PlayerState.Dead:
                 break;
             case PlayerState.Win:
@@ -195,10 +185,6 @@ public class Player : MonoBehaviour
             case PlayerState.Run:
                 character.AnimateRun();
                 break;
-            case PlayerState.RunBack:
-                break;
-            case PlayerState.ChangeWeapon:
-                break;
             case PlayerState.Dead:
                 break;
             case PlayerState.Win:
@@ -214,9 +200,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Finish"))
+        
+        var _tag = other.gameObject.tag;
+        switch (tag)
         {
-            
+            case "Finish":
+                break;
+            case "Money":
+                Destroy(other.gameObject);
+                break;
         }
     }
 }
